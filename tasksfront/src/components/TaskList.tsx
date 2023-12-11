@@ -13,8 +13,21 @@ function TaskList(props) {
   const reversedTasks = sortedTasks.reverse();
 
   return (
-    <div className="task-list-container rounded-md" style={{ height: 400, overflowY: "auto", background:'white',}} >
-      <Scrollbars  >
+    <div className="task-list-container rounded-md" style={{ height: 400, overflowY: "auto",}} >
+      <Scrollbars 
+         style={{ width: '100%', height: '100%' }}
+         renderThumbVertical={({ style, ...props }) => (
+           <div
+             {...props}
+             style={{
+               ...style,
+               backgroundColor: 'gray',
+               borderRadius: '6px',
+               width:'4px',
+             }}
+           />
+         )}
+       >
         {reversedTasks.map((task) => (
           <TaskItem task={task} key={task._id} />
         ))}
